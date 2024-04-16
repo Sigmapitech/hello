@@ -18,7 +18,6 @@
       devShells.default = pkgs.mkShell {
         inputsFrom = pkgs.lib.attrsets.attrValues packages;
         packages = with pkgs; [
-          gcc13
           python3Packages.compiledb
           gcovr
         ];
@@ -26,11 +25,12 @@
 
       packages = rec {
         hello = default;
-        default = pkgs.stdenv.mkDerivation rec {
+        default = pkgs.stdenvNoCC.mkDerivation rec {
           name = "hello";
 
           src = ./.;
-          buildInputs = [
+          nativeBuildInputs = [
+            pkgs.gcc13
             pkgs.gnumake
             # ↓ tput provider for colored makefile
             pkgs.ncurses

@@ -4,3 +4,12 @@ hello
 # build
 .build
 *.[aod]
+
+# config
+compile_commands.json
+.cache
+
+# nix
+.direnv
+.envrc
+result

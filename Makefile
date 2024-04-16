@@ -6,41 +6,29 @@ OUT := hello
 CC := gcc
 
 CFLAGS := -pedantic
-CFLAGS += -Wp,-U_FORTIFY_SOURCE
-CFLAGS += -Wformat=2
 
-CFLAGS += -MMD -MP
-CFLAGS += -fanalyzer
-CFLAGS += -fno-builtin
 CFLAGS += -pipe
 
 CFLAGS += -O2 -march=native -mtune=native
+CFLAGS += -ffunction-sections -fdata-sections
 
 CFLAGS += -Wall
 CFLAGS += -Wcast-qual
 CFLAGS += -Wconversion
-CFLAGS += -Wdisabled-optimization
-CFLAGS += -Wduplicated-branches
-CFLAGS += -Wduplicated-cond
 CFLAGS += -Werror=return-type
 CFLAGS += -Werror=vla-larger-than=0
 CFLAGS += -Wextra
-CFLAGS += -Winit-self
-CFLAGS += -Winline
-CFLAGS += -Wlogical-op
 CFLAGS += -Wmissing-prototypes
-CFLAGS += -Wredundant-decls
 CFLAGS += -Wshadow
 CFLAGS += -Wstrict-prototypes
-CFLAGS += -Wsuggest-attribute=pure
-CFLAGS += -Wsuggest-attribute=const
-CFLAGS += -Wundef
-CFLAGS += -Wunreachable-code
 CFLAGS += -Wwrite-strings
 
 CFLAGS += -iquote src
 
 LDFLAGS := -fwhole-program -flto
+LDFLAGS += -Wl,--gc-sections
+
+LDLIBS += -lc
 
 VPATH += src
 SRC := main.c

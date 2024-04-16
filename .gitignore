@@ -1,0 +1,6 @@
+# binaries
+hello
+
+# build
+.build
+*.[aod]
